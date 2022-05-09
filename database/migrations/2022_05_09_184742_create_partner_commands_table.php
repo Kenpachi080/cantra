@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMainTitlesTable extends Migration
+class CreatePartnerCommandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMainTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_titles', function (Blueprint $table) {
+        Schema::create('partner_commands', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->string('content');
+            $table->string('')
         });
     }
 
@@ -27,6 +26,6 @@ class CreateMainTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('main_titles');
+        Schema::dropIfExists('partner_commands');
     }
 }
