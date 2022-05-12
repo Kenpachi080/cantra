@@ -14,9 +14,9 @@ use App\Http\Controllers\IndexCotroller;
 |
 */
 
-Route::post('/', [IndexCotroller::class, 'main']);
-
+Route::get('/', [IndexCotroller::class, 'main']);
+Route::get('/partner', [IndexCotroller::class, 'partner']);
+Route::get('/fake', [IndexCotroller::class, 'fake']);
 Route::post('/application', [IndexCotroller::class, 'application']);
 Route::post('/applicationjob', [IndexCotroller::class, 'applicationjob']);
-
 Route::post('/items', [IndexCotroller::class, 'items']);
