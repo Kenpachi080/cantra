@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ApplicationJobRequest;
 use App\Http\Requests\ApplicationRequest;
+use App\Http\Requests\itemReviewRequest;
 use App\Models\Application;
 use App\Models\ApplicationJob;
 use App\Models\FakeMain;
@@ -20,6 +21,7 @@ use App\Models\PartnerCard;
 use App\Models\PartnerCommand;
 use App\Models\PartnerMain;
 use App\Models\ReviewBiz;
+use App\Models\ReviewItem;
 use App\Models\Title;
 use Illuminate\Http\Request;
 
@@ -92,31 +94,6 @@ class IndexCotroller extends Controller
         ];
         return response($return, 200);
     }
-
-    public function items(Request $request)
-    {
-        /* Итерация с 1-ым спмском */
-        if ($request->order == 'ASC' || $request->order == 'DESC') {
-            $items = Item::orderBy('price', $request->order);
-        } else if ($request->order == 'NEW') {
-            $items = Item::orderBy('id', 'DESC');
-        } else {
-            $items = Item::orderBy('id', 'ASC');
-        }
-        /* Итерация с 2-ым и 3-им спмском */
-        if ($request->type) {
-            $items->where('type', '=', $request->type);
-        }
-        if ($request->season) {
-            $items->where('season', '=', $request->season);
-        }
-        $items  = $items->get();
-        foreach ($items as $item) {
-            $item->image = $this->url . $item->image;
-        }
-        return response($items, 200);
-    }
-
 
     public function application(ApplicationRequest $request)
     {
