@@ -1,0 +1,384 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cantra API",
+        "description": "Документация",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про каталог",
+                "operationId": "viewIndex",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается полная информация про каталог"
+                    }
+                }
+            }
+        },
+        "/api/partner": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про партнеров",
+                "operationId": "viewpartner",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается полная информация про партнеров"
+                    }
+                }
+            }
+        },
+        "/api/gallery": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про галлерею",
+                "operationId": "viewgallery",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается галлерея"
+                    }
+                }
+            }
+        },
+        "/api/fake": {
+            "get": {
+                "tags": [
+                    "view"
+                ],
+                "summary": "Информация про Отличии от подделок",
+                "operationId": "viewfake",
+                "responses": {
+                    "200": {
+                        "description": "Возврощается информоция про подделок"
+                    }
+                }
+            }
+        },
+        "/api/application": {
+            "post": {
+                "tags": [
+                    "application"
+                ],
+                "summary": "Заявка",
+                "description": "Заявка",
+                "operationId": "application",
+                "requestBody": {
+                    "description": "Создание заявок",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name, phone"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с товаром",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/applicationjob": {
+            "post": {
+                "tags": [
+                    "application"
+                ],
+                "summary": "Заявка",
+                "description": "Заявка",
+                "operationId": "applicationjob",
+                "requestBody": {
+                    "description": "Создание заявок",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name, phone, email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с товаром",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items": {
+            "post": {
+                "tags": [
+                    "item"
+                ],
+                "summary": "Поиск по каталогу",
+                "description": "Поиск по каталогу",
+                "operationId": "item",
+                "requestBody": {
+                    "description": "Поиск товаров",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "order": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "DESC"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Коплекты накидок"
+                                    },
+                                    "season": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Зимние"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с товаром",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items/review/create": {
+            "post": {
+                "tags": [
+                    "item"
+                ],
+                "summary": "СОздание отзывов",
+                "description": "Создание отзывов",
+                "operationId": "review_create",
+                "requestBody": {
+                    "description": "Поиск товаров",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item_id, name, city, auto, color, message"
+                                ],
+                                "properties": {
+                                    "item_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "DESC"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Коплекты накидок"
+                                    },
+                                    "auto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Зимние"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Зимние"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Зимние"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с отзывом",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items/review": {
+            "post": {
+                "tags": [
+                    "item"
+                ],
+                "summary": "Показать отзывы",
+                "description": "Показать отзывы",
+                "operationId": "review_view",
+                "requestBody": {
+                    "description": "Поиск товаров",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item_id"
+                                ],
+                                "properties": {
+                                    "item_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с товаром",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items/item_image": {
+            "post": {
+                "tags": [
+                    "item"
+                ],
+                "summary": "Показать фотки товара",
+                "description": "Показать фотки товаров",
+                "operationId": "item_image",
+                "requestBody": {
+                    "description": "Поиск фоток товаров",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item_id, color"
+                                ],
+                                "properties": {
+                                    "item_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CallBack с товаром",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

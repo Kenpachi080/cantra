@@ -38,7 +38,17 @@ class IndexCotroller extends Controller
         $this->url = env('APP_URL', 'http://127.0.0.1:8000');
         $this->url = $this->url . "/storage/";
     }
-
+    /**
+     * @OA\Get(path="/api/",
+     *   tags={"view"},
+     *   operationId="viewIndex",
+     *   summary="Информация про каталог",
+     * @OA\Response(
+     *    response=200,
+     *    description="Возврощается полная информация про каталог",
+     *   )
+     * )
+     */
     public function main()
     {
         $title = MainTitle::first();
@@ -56,7 +66,17 @@ class IndexCotroller extends Controller
         ];
         return response($return, 200);
     }
-
+    /**
+     * @OA\Get(path="/api/partner",
+     *   tags={"view"},
+     *   operationId="viewpartner",
+     *   summary="Информация про партнеров",
+     * @OA\Response(
+     *    response=200,
+     *    description="Возврощается полная информация про партнеров",
+     *   )
+     * )
+     */
     public function partner()
     {
         $main = PartnerMain::first();
@@ -78,12 +98,32 @@ class IndexCotroller extends Controller
 
         return response($return, 200);
     }
-
+    /**
+     * @OA\Get(path="/api/gallery",
+     *   tags={"view"},
+     *   operationId="viewgallery",
+     *   summary="Информация про галлерею",
+     * @OA\Response(
+     *    response=200,
+     *    description="Возврощается галлерея",
+     *   )
+     * )
+     */
     public function gallery()
     {
         return response(MainGallery::all(), 200);
     }
-
+    /**
+     * @OA\Get(path="/api/fake",
+     *   tags={"view"},
+     *   operationId="viewfake",
+     *   summary="Информация про Отличии от подделок",
+     * @OA\Response(
+     *    response=200,
+     *    description="Возврощается информоция про подделок",
+     *   )
+     * )
+     */
     public function fake()
     {
         $main = FakeMain::first();
@@ -94,7 +134,31 @@ class IndexCotroller extends Controller
         ];
         return response($return, 200);
     }
-
+    /**
+     * @OA\Post(
+     * path="/api/application",
+     * summary="Заявка",
+     * description="Заявка",
+     * operationId="application",
+     * tags={"application"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Создание заявок",
+     *    @OA\JsonContent(
+     *       required={"name, phone"},
+     *       @OA\Property(property="name", type="string", format="string", example="1"),
+     *       @OA\Property(property="phone", type="string", format="string", example="1"),
+     *  ),
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="CallBack с товаром",
+     *    @OA\JsonContent(
+     *       type="object",
+     *        )
+     *     )
+     * )
+     */
     public function application(ApplicationRequest $request)
     {
         $application = Application::create([
@@ -106,11 +170,37 @@ class IndexCotroller extends Controller
             return response($application, 201);
         }
     }
-
+    /**
+     * @OA\Post(
+     * path="/api/applicationjob",
+     * summary="Заявка",
+     * description="Заявка",
+     * operationId="applicationjob",
+     * tags={"application"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Создание заявок",
+     *    @OA\JsonContent(
+     *       required={"name, phone, email"},
+     *       @OA\Property(property="name", type="string", format="string", example="1"),
+     *       @OA\Property(property="phone", type="string", format="string", example="1"),
+     *       @OA\Property(property="email", type="string", format="string", example="1"),
+     *  ),
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="CallBack с товаром",
+     *    @OA\JsonContent(
+     *       type="object",
+     *        )
+     *     )
+     * )
+     */
     public function applicationjob(ApplicationJobRequest $request)
     {
         $application = ApplicationJob::create([
             'name' => $request->name,
+            'email' => $request->email,
             'phone' => $request->phone
         ]);
 
