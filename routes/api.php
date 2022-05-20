@@ -30,6 +30,8 @@ Route::post('/items/review/create', [ItemController::class, 'item_review']);
 Route::post('/items/review', [ItemController::class, 'review_view']);
 Route::post('/items/image', [ItemController::class, 'item_image']);
 
+Route::post('/individual', [IndexCotroller::class, 'individual']);
+
 Route::group(['prefix' => 'order'], function () {
     Route::post('/create', [OrderController::class, 'create']);
 });

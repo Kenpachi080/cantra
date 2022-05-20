@@ -9,6 +9,9 @@ use App\Models\Application;
 use App\Models\ApplicationJob;
 use App\Models\FakeMain;
 use App\Models\FakeSection;
+use App\Models\IndividualEdging;
+use App\Models\IndividualRow;
+use App\Models\IndividualZamsha;
 use App\Models\Item;
 use App\Models\ItemImage;
 use App\Models\MainGallery;
@@ -56,13 +59,27 @@ class IndexCotroller extends Controller
         $reviews = MainReview::all();
         $gallery = MainGallery::all();
         $contact = Title::first();
+        $row = IndividualRow::all();
+        foreach ($row as $block) {
+            $block->image = $this->url.$block->image;
+        }
+        $zamsha = IndividualZamsha::all();
+        foreach ($zamsha as $block) {
+            $block->image = $this->url.$block->image;
+        }
+        $edging = IndividualEdging::all();
+        foreach ($edging as $block) {
+            $block->image = $this->url.$block->image;
+        }
         $return = [
             'main_title' => $title,
             'slider' => $slider,
             'gallery' => $gallery,
             'review' => $reviews,
             'contact_data' => $contact,
-
+            'rowcolor' => $row,
+            'zamshacolor' => $zamsha,
+            'edgingcolor' => $edging,
         ];
         return response($return, 200);
     }
@@ -207,5 +224,9 @@ class IndexCotroller extends Controller
         if ($application) {
             return response($application, 201);
         }
+    }
+
+    public function individual(Request $request) {
+
     }
 }
